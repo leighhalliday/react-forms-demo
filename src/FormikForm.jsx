@@ -85,6 +85,7 @@ export default function GreatForm() {
       {({
         values,
         errors,
+        touched,
         handleChange,
         handleBlur,
         handleSubmit,
@@ -102,9 +103,9 @@ export default function GreatForm() {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.name}
-              className={errors.name ? "has-error" : null}
+              className={touched.name && errors.name ? "has-error" : null}
             />
-            <Error message={errors.name} />
+            <Error touched={touched.name} message={errors.name} />
           </div>
 
           <div className="input-row">
@@ -115,9 +116,9 @@ export default function GreatForm() {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
-              className={errors.email ? "has-error" : null}
+              className={touched.email && errors.email ? "has-error" : null}
             />
-            <Error message={errors.email} />
+            <Error touched={touched.email} message={errors.email} />
           </div>
 
           <div className="input-row">
@@ -165,10 +166,11 @@ export default function GreatForm() {
                 onChange: (_event, { newValue }) => {
                   setCountry(newValue);
                 },
-                className: errors.country ? "has-error" : null
+                className:
+                  touched.country && errors.country ? "has-error" : null
               }}
             />
-            <Error message={errors.country} />
+            <Error touched={touched.country} message={errors.country} />
           </div>
 
           {showPostalCode(values.country) ? (
@@ -180,9 +182,11 @@ export default function GreatForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.postalCode}
-                className={errors.postalCode ? "has-error" : null}
+                className={
+                  touched.postalCode && errors.postalCode ? "has-error" : null
+                }
               />
-              <Error message={errors.postalCode} />
+              <Error touched={touched.postalCode} message={errors.postalCode} />
             </div>
           ) : null}
 
