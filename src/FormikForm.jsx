@@ -48,7 +48,7 @@ function showPostalCode(country) {
   return ["United States of America", "Canada"].includes(country);
 }
 
-export default function GreatForm() {
+export default function FormikForm() {
   const [country, setCountry] = React.useState("");
   const [suggestions, setSuggestions] = React.useState([]);
 
@@ -150,7 +150,16 @@ export default function GreatForm() {
                 setSuggestions([]);
               }}
               getSuggestionValue={suggestion => suggestion.name}
-              renderSuggestion={suggestion => <div>{suggestion.name}</div>}
+              renderSuggestion={suggestion => (
+                <div>
+                  <img
+                    src={suggestion.flag}
+                    alt={suggestion.name}
+                    style={{ width: "25px" }}
+                  />
+                  {suggestion.name}
+                </div>
+              )}
               onSuggestionSelected={(event, { suggestion, method }) => {
                 if (method === "enter") {
                   event.preventDefault();
